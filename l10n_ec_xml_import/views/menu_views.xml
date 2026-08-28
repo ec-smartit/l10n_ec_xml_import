@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Pestaña en la parte superior del módulo de Contabilidad. Los demás archivos de
+         vistas (views/log_import_files.xml) cuelgan sus menús de este mismo padre. -->
+    <menuitem id="menu_sri_received_root"
+              name="Comprobantes SRI"
+              parent="account.menu_finance"
+              sequence="5"/>
+
+    <menuitem id="menu_sri_txt_import"
+              name="Descargar Comprobantes - SRI"
+              parent="menu_sri_received_root"
+              action="action_sri_txt_import_wizard"
+              sequence="10"/>
+
+    <menuitem id="menu_sri_received_document"
+              name="Doc. Electronicos Descargados"
+              parent="menu_sri_received_root"
+              action="action_sri_received_document"
+              sequence="20"/>
+
+    <menuitem id="menu_sri_supplierinfo_homologacion"
+              name="Homologación"
+              parent="menu_sri_received_root"
+              action="action_sri_product_code_mapping"
+              groups="base.group_no_one"
+              sequence="40"/>
+
+</odoo>

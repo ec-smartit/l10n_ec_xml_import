@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sri_product_code_mapping_list" model="ir.ui.view">
+        <field name="name">sri.product.code.mapping.list</field>
+        <field name="model">sri.product.code.mapping</field>
+        <field name="arch" type="xml">
+            <list editable="bottom" decoration-muted="product_id">
+                <field name="partner_id" string="Proveedor" readonly="id"/>
+                <field name="supplier_code" string="Codigo Principal (XML)" readonly="id"/>
+                <field name="supplier_description" string="Descripcion (XML)" readonly="id"/>
+                <field name="product_id" string="Producto en Odoo"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="action_sri_product_code_mapping" model="ir.actions.act_window">
+        <field name="name">Homologacion</field>
+        <field name="res_model">sri.product.code.mapping</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Aqui apareceran automaticamente los codigos de producto que traigan los XML de tus
+                proveedores y que Odoo no pudo reconocer solo. Elige el producto de Odoo para cada
+                fila; la proxima factura de ese proveedor con ese codigo se asignara sola.
+            </p>
+        </field>
+    </record>
+
+</odoo>

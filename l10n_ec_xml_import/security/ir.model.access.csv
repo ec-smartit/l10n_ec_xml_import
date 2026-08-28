@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_import_customer_retentions,import.customer.retentions,model_import_customer_retentions,,1,1,1,1
+access_import_provider_invoices,import.provider.invoices,model_import_provider_invoices,,1,1,1,1
+access_log_import_files,access_log_import_files,model_log_import_files,,1,1,1,1
+access_sri_received_document_user,sri.received.document.user,model_sri_received_document,account.group_account_invoice,1,1,1,1
+access_sri_received_document_manager,sri.received.document.manager,model_sri_received_document,account.group_account_manager,1,1,1,1
+access_sri_txt_import_wizard,sri.txt.import.wizard,model_sri_txt_import_wizard,account.group_account_invoice,1,1,1,1
+access_sri_product_code_mapping_user,sri.product.code.mapping.user,model_sri_product_code_mapping,account.group_account_invoice,1,1,1,1
+access_sri_product_code_mapping_manager,sri.product.code.mapping.manager,model_sri_product_code_mapping,account.group_account_manager,1,1,1,1

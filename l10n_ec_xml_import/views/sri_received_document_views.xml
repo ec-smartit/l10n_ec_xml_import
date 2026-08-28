@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sri_received_document_list" model="ir.ui.view">
+        <field name="name">sri.received.document.list</field>
+        <field name="model">sri.received.document</field>
+        <field name="arch" type="xml">
+            <list decoration-danger="state == 'error'" decoration-warning="state == 'pending_review'" decoration-success="state == 'processed'">
+                <field name="fecha_emision"/>
+                <field name="tipo_comprobante"/>
+                <field name="ruc_emisor"/>
+                <field name="razon_social_emisor"/>
+                <field name="serie_comprobante"/>
+                <field name="clave_acceso"/>
+                <field name="receptor_tipo" widget="badge" decoration-warning="receptor_tipo == 'cedula'" decoration-success="receptor_tipo == 'ruc'"/>
+                <field name="importe_total_txt"/>
+                <field name="state"/>
+                <field name="move_id"/>
+                <field name="move_state" widget="badge" decoration-success="move_state == 'posted'" decoration-info="move_state == 'draft'"/>
+                <field name="can_register" column_invisible="1"/>
+                <button name="action_post_move" type="object" string="Registrar" class="btn-link" invisible="not can_register"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_sri_received_document_search" model="ir.ui.view">
+        <field name="name">sri.received.document.search</field>
+        <field name="model">sri.received.document</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="razon_social_emisor" string="Nombre, RUC, Clave o N° Documento"
+                       filter_domain="['|','|','|','|','|',
+                           ('razon_social_emisor', 'ilike', self),
+                           ('ruc_emisor', 'ilike', self),
+                           ('clave_acceso', 'ilike', self),
+                           ('serie_comprobante', 'ilike', self),
+                           ('numero_documento_modificado', 'ilike', self),
+                           ('move_id.name', 'ilike', self)]"/>
+                <filter name="filter_tipo_factura" string="Factura" domain="[('tipo_comprobante', '=', 'factura')]"/>
+                <filter name="filter_tipo_nc" string="Nota de Credito" domain="[('tipo_comprobante', '=', 'nota_credito')]"/>
+                <filter name="filter_tipo_retencion" string="Retenciones" domain="[('tipo_comprobante', '=', 'retencion')]"/>
+                <separator/>
+                <filter name="filter_receptor_ruc" string="RUC" domain="[('receptor_tipo', '=', 'ruc')]"/>
+                <filter name="filter_receptor_cedula" string="Cedula del Receptor" domain="[('receptor_tipo', '=', 'cedula')]"/>
+                <separator/>
+                <filter name="filter_move_registrado" string="Factura Registrada" domain="[('move_state', '=', 'posted')]"/>
+                <filter name="filter_move_borrador" string="Factura Borrador" domain="[('move_state', '=', 'draft')]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_sri_received_document_form" model="ir.ui.view">
+        <field name="name">sri.received.document.form</field>
+        <field name="model">sri.received.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_download_and_process" type="object" string="Descargar XML y Procesar" class="oe_highlight" invisible="state == 'processed'"/>
+                    <button name="action_post_move" type="object" string="Registrar Factura" class="oe_highlight" invisible="not can_register"/>
+                    <field name="can_register" invisible="1"/>
+                    <field name="state" widget="statusbar" statusbar_visible="to_download,downloaded,processed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="Datos del comprobante">
+                            <field name="tipo_comprobante"/>
+                            <field name="clave_acceso"/>
+                            <field name="serie_comprobante"/>
+                            <field name="fecha_emision"/>
+                            <field name="ruc_emisor"/>
+                            <field name="razon_social_emisor"/>
+                            <field name="numero_documento_modificado"/>
+                        </group>
+                        <group string="Valores (segun TXT del SRI)">
+                            <field name="identificacion_receptor"/>
+                            <field name="receptor_tipo"/>
+                            <field name="valor_sin_impuestos_txt"/>
+                            <field name="iva_txt"/>
+                            <field name="importe_total_txt"/>
+                        </group>
+                    </group>
+                    <group string="Resultado del procesamiento">
+                        <field name="move_id"/>
+                        <field name="move_state"/>
+                        <field name="sri_estado_autorizacion"/>
+                        <field name="auto_download"/>
+                        <field name="error_message"/>
+                    </group>
+                    <group string="Archivo">
+                        <field name="xml_filename"/>
+                        <field name="xml_authorized" filename="xml_filename"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sri_received_document" model="ir.actions.act_window">
+        <field name="name">Doc. Electronicos Descargados</field>
+        <field name="res_model">sri.received.document</field>
+        <field name="view_mode">list,form</field>
+        <field name="search_view_id" ref="view_sri_received_document_search"/>
+        <field name="context">{'search_default_filter_move_borrador': 1}</field>
+    </record>
+
+
+</odoo>

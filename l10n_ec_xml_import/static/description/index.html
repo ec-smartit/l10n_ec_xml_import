@@ -1,0 +1,143 @@
+<section style="font-family: -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color:#2b2b3a; max-width: 980px; margin: 0 auto;">
+
+    <div style="text-align:center; padding: 32px 16px; background: linear-gradient(135deg,#4b2e83,#7a4fd1); border-radius: 12px; color:#ffffff;">
+        <h1 style="margin:0 0 8px; font-size: 30px;">Ecuador &mdash; Importación y Descarga Automática de Comprobantes SRI</h1>
+        <p style="margin:0; font-size:16px; opacity:0.9;">
+            Descarga, importa y concilia facturas de proveedor, notas de crédito/débito y retenciones
+            electrónicas del SRI directamente en Odoo, sin digitar nada a mano.
+        </p>
+    </div>
+
+    <!-- Video de YouTube: cuando tengas el enlace, reemplaza VIDEO_ID en la línea de abajo
+         por el ID del video (la parte después de "v=" en la URL de YouTube) y quita este
+         comentario junto con el <p> de aviso. -->
+    <div style="margin-top:28px; text-align:center; color:#8a8a99;">
+        <p>(Video de demostración pendiente de agregar.)</p>
+        <!--
+        <iframe width="100%" height="480" style="max-width:854px; border-radius:10px; border:0;"
+                src="https://www.youtube.com/embed/VIDEO_ID"
+                title="Demostración del módulo" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+        -->
+    </div>
+
+    <div style="display:flex; flex-wrap:wrap; gap:16px; margin-top:28px;">
+        <div style="flex:1 1 280px; padding:20px; border:1px solid #e6e6ef; border-radius:10px;">
+            <h3 style="margin-top:0; color:#4b2e83;">Descarga automática por TXT</h3>
+            <p>
+                Sube el archivo TXT de "Comprobantes Recibidos" del portal SRI en Línea. Por cada
+                clave de acceso nueva, el módulo consulta el Web Service de Autorización del SRI,
+                descarga el XML autorizado y crea el documento en Odoo &mdash; en segundo plano, sin
+                bloquear tu sesión aunque el archivo traiga cientos de filas.
+            </p>
+        </div>
+        <div style="flex:1 1 280px; padding:20px; border:1px solid #e6e6ef; border-radius:10px;">
+            <h3 style="margin-top:0; color:#4b2e83;">Subida manual de XML / ZIP</h3>
+            <p>
+                ¿Ya tienes los XML autorizados? Súbelos uno por uno o en un ZIP. El módulo detecta
+                solo si cada archivo es factura, nota de crédito, nota de débito, liquidación de
+                compra o comprobante de retención.
+            </p>
+        </div>
+        <div style="flex:1 1 280px; padding:20px; border:1px solid #e6e6ef; border-radius:10px;">
+            <h3 style="margin-top:0; color:#4b2e83;">Conciliación automática de retenciones</h3>
+            <p>
+                Las retenciones de cliente se concilian automáticamente contra la factura de venta
+                correspondiente, validando tanto el número de documento como el RUC de quien retiene
+                &mdash; para no aplicar por error una retención al cliente equivocado.
+            </p>
+        </div>
+        <div style="flex:1 1 280px; padding:20px; border:1px solid #e6e6ef; border-radius:10px;">
+            <h3 style="margin-top:0; color:#4b2e83;">Homologación de productos</h3>
+            <p>
+                Recuerda automáticamente qué producto de Odoo corresponde a cada código de producto
+                que use un proveedor en su XML, para que las próximas compras se carguen solas.
+            </p>
+        </div>
+        <div style="flex:1 1 280px; padding:20px; border:1px solid #e6e6ef; border-radius:10px;">
+            <h3 style="margin-top:0; color:#4b2e83;">Respaldo permanente para auditoría tributaria</h3>
+            <p>
+                El XML autorizado de cada comprobante queda adjunto de forma permanente al documento
+                contable que genera en Odoo (factura, nota de crédito/débito o retención). Así se
+                cumple con la obligación del SRI de conservar los comprobantes electrónicos como
+                respaldo, disponibles de inmediato ante cualquier inspección o requerimiento
+                tributario, sin depender de archivos sueltos fuera del sistema.
+            </p>
+        </div>
+    </div>
+
+    <h2 style="color:#4b2e83; margin-top:36px;">Cómo funciona</h2>
+    <ol style="line-height:1.8;">
+        <li>Abre <strong>Contabilidad &rsaquo; Comprobantes SRI &rsaquo; Descargar Comprobantes - SRI</strong>.</li>
+        <li>Elige el modo TXT (descarga automática) o XML/ZIP (subida manual).</li>
+        <li>El módulo crea las facturas de compra en borrador, listas para tu revisión antes de confirmarlas.</li>
+        <li>Revisa el resultado en <strong>Doc. Electrónicos Descargados</strong>: ahí ves el estado de cada comprobante y la factura/asiento vinculado.</li>
+    </ol>
+
+    <h2 style="color:#4b2e83;">Capturas de pantalla</h2>
+    <div style="display:flex; flex-direction:column; gap:28px; margin-top:16px;">
+
+        <figure style="margin:0;">
+            <img src="instalacion.png" alt="Instalación del módulo" style="width:100%; border-radius:10px; border:1px solid #e6e6ef;"/>
+            <figcaption style="text-align:center; color:#6b6b7a; margin-top:8px;">
+                El módulo aparece en Aplicaciones, dentro de la categoría Contabilidad.
+            </figcaption>
+        </figure>
+
+        <figure style="margin:0;">
+            <img src="contabilidad.png" alt="Menú Comprobantes SRI" style="width:100%; border-radius:10px; border:1px solid #e6e6ef;"/>
+            <figcaption style="text-align:center; color:#6b6b7a; margin-top:8px;">
+                Menú "Comprobantes SRI" dentro de Contabilidad, con acceso directo a la descarga y al historial.
+            </figcaption>
+        </figure>
+
+        <figure style="margin:0;">
+            <img src="Subidatxt.png" alt="Subida del TXT de Comprobantes Recibidos" style="width:100%; border-radius:10px; border:1px solid #e6e6ef;"/>
+            <figcaption style="text-align:center; color:#6b6b7a; margin-top:8px;">
+                Sube el TXT de "Comprobantes Recibidos" del SRI y el módulo se encarga del resto.
+            </figcaption>
+        </figure>
+
+        <figure style="margin:0;">
+            <img src="docdescargados.png" alt="Listado de comprobantes descargados" style="width:100%; border-radius:10px; border:1px solid #e6e6ef;"/>
+            <figcaption style="text-align:center; color:#6b6b7a; margin-top:8px;">
+                Todos los comprobantes descargados, con su estado y la factura vinculada, en un solo listado.
+            </figcaption>
+        </figure>
+
+        <figure style="margin:0;">
+            <img src="detalledocdescargado.png" alt="Detalle de un comprobante descargado" style="width:100%; border-radius:10px; border:1px solid #e6e6ef;"/>
+            <figcaption style="text-align:center; color:#6b6b7a; margin-top:8px;">
+                Detalle de cada comprobante: valores del XML, estado en el SRI y observaciones del procesamiento.
+            </figcaption>
+        </figure>
+
+        <figure style="margin:0;">
+            <img src="factingresadaconelxml.png" alt="Factura de compra creada automáticamente" style="width:100%; border-radius:10px; border:1px solid #e6e6ef;"/>
+            <figcaption style="text-align:center; color:#6b6b7a; margin-top:8px;">
+                Factura de compra creada en borrador, con los valores del XML del SRI listos para tu revisión.
+            </figcaption>
+        </figure>
+
+        <figure style="margin:0;">
+            <img src="log.png" alt="Resultado de la importación" style="width:100%; border-radius:10px; border:1px solid #e6e6ef;"/>
+            <figcaption style="text-align:center; color:#6b6b7a; margin-top:8px;">
+                Resumen del resultado apenas termina la importación.
+            </figcaption>
+        </figure>
+
+    </div>
+
+    <h2 style="color:#4b2e83;">Requisitos</h2>
+    <ul style="line-height:1.8;">
+        <li>Odoo 19 &mdash; módulos <code>account</code> y <code>l10n_ec_edi</code> instalados.</li>
+        <li>RUC de la compañía configurado en Ajustes &rsaquo; Empresas.</li>
+    </ul>
+
+    <h2 style="color:#4b2e83;">Soporte</h2>
+    <p>
+        ¿Dudas o necesitas ayuda con la instalación? Escríbenos a través de nuestro sitio web.
+    </p>
+
+</section>

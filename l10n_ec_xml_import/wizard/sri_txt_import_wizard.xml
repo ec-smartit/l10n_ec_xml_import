@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sri_txt_import_wizard_form" model="ir.ui.view">
+        <field name="name">sri.txt.import.wizard.form</field>
+        <field name="model">sri.txt.import.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Descargar Comprobantes - SRI">
+                <field name="state" invisible="1"/>
+
+                <group invisible="state != 'upload'">
+                    <field name="import_mode" widget="radio"/>
+                </group>
+                <group invisible="state != 'upload' or import_mode != 'txt'">
+                    <p>Sube el TXT de "Comprobantes Recibidos" descargado del portal SRI en Línea.</p>
+                    <field name="txt_file" filename="txt_filename"/>
+                    <field name="txt_filename" invisible="1"/>
+                    <field name="auto_process"/>
+                </group>
+                <group invisible="state != 'upload' or import_mode != 'xml'">
+                    <p>Sube uno o varios XML ya autorizados por el SRI (o un ZIP con varios).</p>
+                    <field name="attachment_ids" widget="many2many_binary"/>
+                </group>
+
+                <group invisible="state != 'done'">
+                    <field name="result_text" nolabel="1"
+                           style="font-family: monospace; white-space: pre-wrap;"/>
+                </group>
+
+                <footer>
+                    <button name="action_import" type="object" string="Importar"
+                            class="oe_highlight" invisible="state != 'upload'"/>
+                    <button name="action_new_upload" type="object" string="Nueva carga"
+                            class="oe_highlight" invisible="state != 'done'"/>
+                    <button string="Cerrar" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_sri_txt_import_wizard" model="ir.actions.act_window">
+        <field name="name">Descargar Comprobantes - SRI</field>
+        <field name="res_model">sri.txt.import.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+</odoo>

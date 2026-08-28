@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- Corre en cada instalación y en cada actualización del módulo (no está marcado
+         noupdate, así que se reprocesa siempre) para asegurar que el menú "Comprobantes
+         SRI" quede colgado de la app de Contabilidad, no de Facturación. -->
+    <function model="sri.received.document" name="_reparent_top_menu"/>
+
+</odoo>

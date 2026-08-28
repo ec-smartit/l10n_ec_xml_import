@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="inherit_view_id_l10n_ec_import_xml" model="ir.ui.view">
+        <field name="name">model.name.view.form.inherit</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_invoice_tree"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='ref']" position="after">
+                <field name="has_retention" optional="hide"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_move_form_l10n_ec_xml_totals" model="ir.ui.view">
+        <field name="name">account.move.form.l10n.ec.xml.totals</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='invoice_line_ids']" position="after">
+                <group name="l10n_ec_xml_totals_check"
+                       string="Valores según XML (SRI)"
+                       class="oe_subtotal_footer oe_right"
+                       invisible="not sri_received_document_ids">
+                    <field name="l10n_ec_xml_amount_untaxed" widget="monetary"/>
+                    <field name="l10n_ec_xml_amount_tax" widget="monetary"/>
+                    <field name="l10n_ec_xml_amount_total" widget="monetary" class="oe_subtotal_footer_separator"/>
+                    <field name="l10n_ec_xml_amount_total_diff" widget="monetary"
+                           decoration-danger="l10n_ec_xml_amount_total_diff != 0"
+                           decoration-success="l10n_ec_xml_amount_total_diff == 0"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
+
