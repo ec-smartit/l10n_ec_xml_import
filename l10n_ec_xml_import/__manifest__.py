@@ -1,22 +1,27 @@
 {
-    "name": "Ecuador - Importación y Descarga Automática de Comprobantes SRI",
+    "name": "Comprobantes SRI Ecuador",
     "version": "19.0.4.0.0",
+    "summary": "Import and reconcile SRI electronic vendor bills and withholdings",
     "description": """
-Importa facturas de proveedor y retenciones de cliente desde los XML del SRI, en una sola
-ventana ("Importar Comprobantes Recibidos") con dos formas de trabajar:
+Imports vendor bills and customer withholdings from Ecuador's SRI (tax authority) XML
+documents, in a single wizard, with two ways to work:
 
-* TXT (descarga automática): subes el TXT de "Comprobantes Recibidos" del portal SRI en
-  Línea; por cada clave de acceso nueva se consulta el Web Service de Autorización del
-  SRI y se descarga el XML autorizado.
-* XML / ZIP (subida manual): subes uno o varios XML ya autorizados (o un ZIP). El módulo
-  detecta solo si cada uno es factura/nota de crédito/nota de débito o retención.
+* TXT (automatic download): upload the "Received Documents" TXT exported from the SRI
+  online portal; for each new access key, the SRI Authorization Web Service is queried
+  and the authorized XML is downloaded automatically.
+* XML / ZIP (manual upload): upload one or several already-authorized XML files (or a
+  ZIP). The module detects on its own whether each one is a vendor bill, credit note,
+  debit note or withholding document.
 
-En ambos casos, las facturas de compra quedan en borrador para revisión, y las retenciones
-se concilian automáticamente contra la factura de venta correspondiente (validando también
-el RUC del cliente, no solo el número de documento).
+In both cases, vendor bills are created in draft for review, and withholdings are
+automatically reconciled against the matching customer invoice (validating both the
+document number and the withholding party's tax ID).
 """,
     "countries": ["ec"],
     "author": "smartit-ec.com / Custom Development",
+    "support": "michael.freire@smartit-ec.com",
+    "price": 390.00,
+    "currency": "USD",
     "category": "Accounting/Localizations/Payments",
     "website": "http://www.smartit-ec.com",
     "license": "OPL-1",
